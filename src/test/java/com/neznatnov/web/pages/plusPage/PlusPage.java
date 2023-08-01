@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class PlusPage {
     private static final String TITLE = "Upgrade to Unsplash+ and start creating with exclusive, royalty-free images.";
     private static final String MONTHLY_TEXT = "Get Unsplash+ for €10/month";
-    private static final String YEARLY_TEXT = "Get Unsplash+ for €71/year*";
+    private static final String YEARLY_TEXT = "Get Unsplash+ for €72/year*";
 
 
     private final SelenideElement mainHeadLine = $("h1.i1Flo");
