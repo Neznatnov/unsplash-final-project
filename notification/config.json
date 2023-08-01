@@ -1,0 +1,17 @@
+{
+  "base": {
+    "logo": "",
+    "project": "${JOB_BASE_NAME}",
+    "environment": "${BASE_URL}",
+    "comment": "@neznatnov launch in ${BROWSER} with version ${BROWSER_VERSION} and resolution ${BROWSER_SIZE}",
+    "reportLink": "${BUILD_URL}",
+    "language": "en",
+    "allureFolder": "allure-report/",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "6032734782:AAF-prNaqO31EJO7aV_4Zyx1JE7MiXa0xO0",
+    "chat": "-899309320",
+    "replyTo": ""
+  }
+}
