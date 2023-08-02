@@ -1,121 +1,88 @@
 package com.neznatnov.api.tests;
 
 import com.neznatnov.api.data.BaseData;
-import io.restassured.RestAssured;
+import com.neznatnov.api.data.PhotoData;
+import com.neznatnov.api.models.SearchResultModel;
+import io.qameta.allure.Owner;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import static com.neznatnov.api.helpers.Endpoints.*;
+import static com.neznatnov.api.spec.Specification.requestSpec;
+import static com.neznatnov.api.spec.Specification.responseSpec200;
 import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
-import java.util.Map;
-
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
 
 
 public class PhotoTest {
+
     BaseData baseTestData = new BaseData();
-    public String accessKey = "et8QMszGBfa1Edy2ZgtrY17PEY-t9pk1vSzOj7i5bwg";
-    public String photoId = "1khpK68QqBY"; // ID фотографии, которую вы хотите лайкнуть
-    public String userId = "flN3pLjhDLw";
+    PhotoData photoData = new PhotoData();
 
     @Test
+    @Tag("unsplash_api")
+    @DisplayName("Getting a random photo")
+    @Owner("Veronika Iatckaia")
     public void testGetRandomPhoto() {
-        // Установите базовый URL для API Unsplash
-        RestAssured.baseURI = "https://api.unsplash.com";
-
-
-        // Выполните GET-запрос на эндпоинт /photos/random
-        Response response = given()
-                .param("count", 1) // Возвращаем только одну случайную фотографию
-                .header("Authorization", "Client-ID " + accessKey)
-                .when()
-                .get("/photos/random")
-                .then()
-                .statusCode(200)
-                .contentType("application/json")
-                //.body("id", hasKey("raw"))
-                .extract().response();
-
-        // Выведите в консоль JSON-ответ
-        System.out.println(response.asPrettyString());
-    }
-
-    @Test
-    public void testSearchPhotos() {
-        String photoIdToSearch = "VWcPlbHglYc"; // ID фотографии, которую нужно найти
-
-        RestAssured.baseURI = "https://api.unsplash.com";
 
         given()
-                .param("query", "office") // Поиск фотографий по запросу "office"
-                .param("per_page", 10) // Количество фотографий на странице
-                .param("order_by", "relevant") // Сортировка по релевантности
-                .header("Authorization", "Client-ID " + accessKey)
+                .spec(requestSpec)
+                .param("count", 1)
+                .header("Authorization", "Client-ID " + baseTestData.api_key)
                 .when()
-                .get("/search/photos")
+                .get(getPhotosRandom)
                 .then()
-                .statusCode(200)
-                .contentType("application/json")
-                .body("results[0].id", equalTo(photoIdToSearch));// Проверка, что искомый ID
+                .spec(responseSpec200)
+                .contentType(ContentType.JSON)
+                .extract().response();
     }
 
     @Test
+    @Tag("unsplash_api")
+    @DisplayName("Verifies searching for photos using a specific keyword ")
+    @Owner("Veronika Iatckaia")
+    public void testSearchPhotos() {
+
+        ValidatableResponse response = given()
+                .spec(requestSpec)
+                .param("query", photoData.photoKeyWord)
+                .param("per_page", 10)
+                .param("order_by", photoData.order)
+                .header("Authorization", "Client-ID " + baseTestData.api_key)
+                .when()
+                .get(getPhotoSearch)
+                .then()
+                .spec(responseSpec200)
+                .contentType(ContentType.JSON)
+                .body("results[0].id", equalTo(photoData.photoIdToSearch));
+
+    }
+
+    @Test
+    @Tag("unsplash_api")
+    @DisplayName("Verifies retrieving statistics for a specific photo")
+    @Owner("Veronika Iatckaia")
     public void testGetPhotoStatistics() {
 
-        String photoId = "LF8gK8-HGSg";
-
-        RestAssured.baseURI = "https://api.unsplash.com";
-
-        Response response = given()
-                .header("Authorization", "Client-ID " + accessKey)
+        given()
+                .spec(requestSpec)
+                .header("Authorization", "Client-ID " + baseTestData.api_key)
+                .pathParam("photoId", photoData.photoId)
                 .contentType(ContentType.JSON)
-                .param("resolution", "days")
                 .param("quantity", 30)
                 .when()
-                .get("/photos/" + photoId + "/statistics")
+                .get(getPhotoStatistics)
                 .then()
-                .statusCode(200)
-                .contentType("application/json")
+                .spec(responseSpec200)
+                .contentType(ContentType.JSON)
                 .extract().response();
-
-        // Validating total number of downloads, views, and likes
-        int totalDownloads = response.path("downloads.total");
-        int totalViews = response.path("views.total");
-        int totalLikes = response.path("likes.total");
-
-        // Validating the historical data for downloads, views, and likes
-        List<Map<String, Object>> downloadValues = response.path("downloads.historical.values");
-        for (Map<String, Object> value : downloadValues) {
-            int downloadValue = Integer.parseInt(value.get("value").toString());
-            // Add assertions based on the historical data, if needed
-            // For example, to ensure that each download value is greater than or equal to 0:
-            // assertThat(downloadValue, greaterThanOrEqualTo(0));
-        }
-
-        List<Map<String, Object>> viewValues = response.path("views.historical.values");
-        for (Map<String, Object> value : viewValues) {
-            int viewValue = Integer.parseInt(value.get("value").toString());
-            // Add assertions based on the historical data, if needed
-            // For example, to ensure that each view value is greater than or equal to 0:
-            // assertThat(viewValue, greaterThanOrEqualTo(0));
-        }
-
-        List<Map<String, Object>> likeValues = response.path("likes.historical.values");
-        for (Map<String, Object> value : likeValues) {
-            int likeValue = Integer.parseInt(value.get("value").toString());
-            // Add assertions based on the historical data, if needed
-            // For example, to ensure that each like value is greater than or equal to 0:
-            // assertThat(likeValue, greaterThanOrEqualTo(0));
-        }
-
 
     }
 }

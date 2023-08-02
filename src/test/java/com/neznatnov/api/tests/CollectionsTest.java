@@ -1,60 +1,66 @@
 package com.neznatnov.api.tests;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import org.junit.jupiter.api.Test;
-import io.restassured.RestAssured;
-import static io.restassured.RestAssured.given;
-import static org.assertj.core.api.AssertionsForClassTypes.not;
-import static org.hamcrest.Matchers.*;
 
 import com.neznatnov.api.data.BaseData;
+import com.neznatnov.api.data.CollectionsData;
+import com.neznatnov.api.models.SearchResultModel;
+import io.qameta.allure.Owner;
+import io.restassured.http.ContentType;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static com.neznatnov.api.helpers.Endpoints.*;
+import static com.neznatnov.api.spec.Specification.requestSpec;
+import static com.neznatnov.api.spec.Specification.responseSpec200;
+import static io.qameta.allure.Allure.step;
+import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.*;
 
 public class CollectionsTest {
     BaseData baseTestData = new BaseData();
-    public String accessKey = "et8QMszGBfa1Edy2ZgtrY17PEY-t9pk1vSzOj7i5bwg";
+    CollectionsData collectionsData = new CollectionsData();
+
     @Test
+    @Tag("unsplash_api")
+    @DisplayName("Getting a collection by correct id")
+    @Owner("Veronika Iatckaia")
     public void testGetCollectionById() {
-        String collectionId = "90Cf9k_JhcQ"; // Replace with the real collection ID
-
-        RestAssured.baseURI = "https://api.unsplash.com";
-
-        Response response = given()
-                .header("Authorization", "Client-ID " + accessKey)
-                .pathParam("id", collectionId)
+        step("Проверка: при добавлении корректного ID к эндпоинту в ответ приходит соответсвующая ему гифка", () -> {
+        given()
+                .spec(requestSpec)
+                .header("Authorization", "Client-ID " + baseTestData.api_key)
+                .pathParam("id", collectionsData.collectionId)
                 .when()
-                .get("/collections/{id}")
+                .get(getCollectionsId)
                 .then()
-                .statusCode(200)
+                .spec(responseSpec200)
                 .contentType(ContentType.JSON)
-                .body("id", equalTo(collectionId)) // Ensure the collection ID matches
-                .body("total_photos", greaterThanOrEqualTo(0)) // Ensure total_photos is non-negative
-                .body("links.self", equalTo("https://api.unsplash.com/collections/" + collectionId)) // Ensure the self link matches
+                .body("id", equalTo(collectionsData.collectionId))
+                .body("total_photos", greaterThanOrEqualTo(0))
                 .extract().response();
-
-        // You can perform further validations based on the specific requirements of your test
-        // For example, you can check additional fields and values in the collection response.
+        });
     }
 
     @Test
+    @Tag("unsplash_api")
+    @DisplayName("Checking a selection of photos in a collection")
+    @Owner("Veronika Iatckaia")
     public void testGetCollectionPhotos() {
-        String collectionId = "90Cf9k_JhcQ"; // Replace with the real collection ID
-
-        RestAssured.baseURI = "https://api.unsplash.com";
-
-        Response response = given()
-                .header("Authorization", "Client-ID " + accessKey)
-                .pathParam("id", collectionId)
-                .param("per_page", 10) // Optional: You can specify the number of photos per page
+        List<SearchResultModel> results = given()
+                .spec(requestSpec)
+                .header("Authorization", "Client-ID " + baseTestData.api_key)
+                .pathParam("id",collectionsData.collectionId)
+                .param("per_page", 5)
                 .when()
-                .get("/collections/{id}/photos")
+                .get(getCollectionsPhotos)
                 .then()
-                .statusCode(200)
+                .spec(responseSpec200)
                 .contentType(ContentType.JSON)
-                .body("$", hasSize(greaterThan(0))) // Ensure the response contains at least one photo
-                .body("[0].id", notNullValue()) // Ensure the first photo has an ID
-                .extract().response();
+                .extract().body().jsonPath().getList("", SearchResultModel.class);
+        assertThat(results.size()).isEqualTo(5);
 
-        // You can perform further validations based on the specific requirements of your test
-        // For example, you can check additional fields and values in the photos response.
     }
 }

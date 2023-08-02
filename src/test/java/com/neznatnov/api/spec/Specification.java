@@ -23,10 +23,4 @@ public class Specification {
             .log(BODY)
             .expectStatusCode(200)
             .build();
-
-    public static ResponseSpecification responseSpec201 = new ResponseSpecBuilder()
-            .log(STATUS)
-            .log(BODY)
-            .expectStatusCode(201)
-            .build();
 }
