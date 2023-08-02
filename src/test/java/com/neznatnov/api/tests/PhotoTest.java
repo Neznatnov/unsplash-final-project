@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import static com.neznatnov.api.helpers.Endpoints.*;
 import static com.neznatnov.api.spec.Specification.requestSpec;
 import static com.neznatnov.api.spec.Specification.responseSpec200;
+import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -31,7 +32,7 @@ public class PhotoTest {
     @DisplayName("Getting a random photo")
     @Owner("Veronika Iatckaia")
     public void testGetRandomPhoto() {
-
+        step("Getting one random photo", () -> {
         given()
                 .spec(requestSpec)
                 .param("count", 1)
@@ -42,15 +43,16 @@ public class PhotoTest {
                 .spec(responseSpec200)
                 .contentType(ContentType.JSON)
                 .extract().response();
+        });
     }
 
     @Test
     @Tag("unsplash_api")
-    @DisplayName("Verifies searching for photos using a specific keyword ")
+    @DisplayName("Verifies searching for photo using a specific keyword")
     @Owner("Veronika Iatckaia")
     public void testSearchPhotos() {
-
-        ValidatableResponse response = given()
+        step("Looking for photos by keyword with a special order", () -> {
+        given()
                 .spec(requestSpec)
                 .param("query", photoData.photoKeyWord)
                 .param("per_page", 10)
@@ -62,7 +64,7 @@ public class PhotoTest {
                 .spec(responseSpec200)
                 .contentType(ContentType.JSON)
                 .body("results[0].id", equalTo(photoData.photoIdToSearch));
-
+    });
     }
 
     @Test
@@ -70,7 +72,7 @@ public class PhotoTest {
     @DisplayName("Verifies retrieving statistics for a specific photo")
     @Owner("Veronika Iatckaia")
     public void testGetPhotoStatistics() {
-
+        step("Getting photo statistics for the last 30 days", () -> {
         given()
                 .spec(requestSpec)
                 .header("Authorization", "Client-ID " + baseTestData.api_key)
@@ -83,6 +85,6 @@ public class PhotoTest {
                 .spec(responseSpec200)
                 .contentType(ContentType.JSON)
                 .extract().response();
-
+    });
     }
 }

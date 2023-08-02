@@ -28,7 +28,7 @@ public class CollectionsTest {
     @DisplayName("Getting a collection by correct id")
     @Owner("Veronika Iatckaia")
     public void testGetCollectionById() {
-        step("Проверка: при добавлении корректного ID к эндпоинту в ответ приходит соответсвующая ему гифка", () -> {
+        step("When adding the correct ID to the endpoint, the collection corresponding to it comes in response", () -> {
         given()
                 .spec(requestSpec)
                 .header("Authorization", "Client-ID " + baseTestData.api_key)
@@ -49,6 +49,7 @@ public class CollectionsTest {
     @DisplayName("Checking a selection of photos in a collection")
     @Owner("Veronika Iatckaia")
     public void testGetCollectionPhotos() {
+        step("", () -> {
         List<SearchResultModel> results = given()
                 .spec(requestSpec)
                 .header("Authorization", "Client-ID " + baseTestData.api_key)
@@ -61,6 +62,6 @@ public class CollectionsTest {
                 .contentType(ContentType.JSON)
                 .extract().body().jsonPath().getList("", SearchResultModel.class);
         assertThat(results.size()).isEqualTo(5);
-
+        });
     }
 }

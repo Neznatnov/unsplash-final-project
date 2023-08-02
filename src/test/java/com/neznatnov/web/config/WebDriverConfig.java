@@ -30,8 +30,4 @@ public interface WebDriverConfig extends Config {
     @Key("pageLoadStrategy")
     String getPageLoadStrategy();
 
-    @Key("isRemote")
-    @DefaultValue("false")
-    Boolean isRemote();
-
 }

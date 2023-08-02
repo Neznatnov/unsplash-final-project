@@ -12,6 +12,7 @@ import static com.neznatnov.api.helpers.Endpoints.getUserCollections;
 import static com.neznatnov.api.helpers.Endpoints.getUserLikes;
 import static com.neznatnov.api.spec.Specification.requestSpec;
 import static com.neznatnov.api.spec.Specification.responseSpec200;
+import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
@@ -25,6 +26,7 @@ public class UserTest {
     @DisplayName("Verifies retrieving liked photos of a specific user")
     @Owner("Veronika Iatckaia")
     public void testGetUserLikedPhotos() {
+        step("For a specific username, we get a list of photos that a user has liked", () -> {
         given()
                 .spec(requestSpec)
                 .header("Authorization", "Client-ID " + baseTestData.api_key)
@@ -37,6 +39,7 @@ public class UserTest {
                 .body("[0].id", notNullValue())
                 .extract()
                 .response();
+        });
     }
 
     @Test
@@ -44,6 +47,7 @@ public class UserTest {
     @DisplayName("Getting collections created by a specific user")
     @Owner("Veronika Iatckaia")
     public void testGetUserCollections() {
+            step("For a specific username, we get the collections that this user created", () -> {
         given()
                 .spec(requestSpec)
                 .header("Authorization", "Client-ID " + baseTestData.api_key)
@@ -56,6 +60,6 @@ public class UserTest {
                 .body("$", not(empty()))
                 .body("[0].id", notNullValue())
                 .extract().response();
-
+            });
     }
 }
