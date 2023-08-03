@@ -33,27 +33,26 @@ Unsplash is a platform powered by an amazing community that has gifted hundreds 
 In this project, the automated tests are written in <code>Java</code> using the <code>Selenide</code> framework. <code>Gradle</code> is used to build the project. <code>JUnit 5</code> is used as the unit testing framework. <code>Rest-assured</code> library was used for API tests. The tests are run from <code>Jenkins</code>. After the run is completed, a notification is sent using a bot on Telegram. <code>Selenoid</code> is used to run browsers in Docker containers. Integration with <code>Allure TestOps</code> and <code>Jira</code> is set up for test reporting and test result analytics.
 
 ## List of UI Tests
-- [x] Authorization with email and password
-- [x] Verification of displayed sub-items for each menu item on the main page (parametrized test)
-#### Integrations page
-- [x] Check the search of integrations by name
-- [x] Verification of the message when no results match the search query
-#### Pricing calculator for enterprise teams
-- [x] Check the number of users and prices displayed by default
-- [x] Check prices for the maximum number of users
-- [x] Check the error message when the number of users is less than minimum
-- [x] Check the error message when the number of users exceeds the maximum
+- [x] Checking that all elements are on the page
+- [x] Log in with correct credentials
+- [x] Log in with incorrect credentials
+- [x] Checking social network links in the menu tab
+- [x] Checking that all elements are in the header
+- [x] Checking the button with the sum of the month
+- [x] Checking the button with the sum of the year
+- [x] Checking the title text on the page
 
 ## List of API tests
-- [x] Successful board creation
-- [x] Check if a board cannot be created without specifying its name
-- [x] Successful deletion of the board
-- [x] Successful creation of a list in the board
-- [x] Successful creation of a card in the list
-- [x] Card update: moving the card to another list
+- [x] Checking a selection of photos in a collection
+- [x] Getting a collection by correct id
+- [x] Getting a random photos
+- [x] Searching photos by keyword
+- [x] Verifies retrieving statistics for a specific photo
+- [x] Getting a list of photos that a particular user has liked
+- [x] Getting collections created by a specific user
 
 ## Running automated tests on a local machine
-To run tests locally on your machine, add the local.properties file to the src/test/resources/config folder and fill in the following properties:
+To run tests locally on your machine, add the local.properties file to the src/test/resources/properties folder and fill in the following properties:
 
 ```properties
 clean
@@ -66,30 +65,22 @@ ${TASK}
 -Denv=${env}
 ```
 >- <code>BROWSER</code> - browser in which the tests will be run (Chrome is set by default)
+>- <code>BROWSER_VERSION</code> - the browser version in which the tests will be run.(The default is 100.00)
 >- <code>BROWSER_SIZE</code> - size of the browser window (1920x1080 is set by default)
 >- <code>BASE_URL</code> - the base URL of the web application under test
->- <code>TRELLO_USER_EMAIL</code> - test account login
->- <code>TRELLO_USER_PASSWORD</code> - test account password
->- <code>API_BASE_URL</code> - the base URL of the API
-
-Then use the following command:
-```
-gradle clean TASK -Denv=local
-```
-<code>TASK</code> - ui_test / api_test / test
+>- <code>env</code> - quick selection of remote test launch configuration.
 
 Or you can specify parameters directly in the command to run:
 ```
 gradle clean TASK
--Dbrowser=BROWSER 
--DbrowserSize=BROWSER_SIZE
--DbaseUrl=BASE_URL
--DtrelloUserEmail=TRELLO_USER_EMAIL
--DtrelloUserPassword=TRELLO_USER_PASSWORD
--DapiBaseUrl=API_BASE_URLgit
--DtrelloApiKey=TRELLO_API_KEY
--DtrelloApiToken=TRELLO_API_TOKEN
+-Dbrowser=${BROWSER}
+-DbrowserVersion=${BROWSER_VERSION}
+-DbrowserSize=${BROWSER_SIZE}
+-DbaseUrl=${BASE_URL}
+-Denv=${env}
 ```
+<code>TASK</code> - ui_test / api_test / test
+
 ## Running tests in Jenkins
 To run tests in Jenkins, follow these steps:
 1. Click on the [provided link](https://jenkins.autotests.cloud/job/19_neznatnov_final_unsplash_unit24/)
@@ -134,5 +125,5 @@ After passing all the tests, an automatic report is sent to the Telegram messeng
 
 ## Example of test execution in Selenoid
 <div style="text-align: center;">
-  <img title="Selenoid Video" src="readme/video/video.mp4" alt="Test execution in Selenoid">
+  <img title="Selenoid Video" src="readme/video/video.gif" alt="Test execution in Selenoid">
 </div>
