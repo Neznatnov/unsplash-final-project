@@ -98,15 +98,10 @@ To run tests in Jenkins, follow these steps:
 4. Click the **Build** button, and build will be started
 
 <div style="text-align: center;">
-  <img src="media/screens/jenkins_1.png" alt="Jenkins" width="900">
+  <img src="media/screens/jenkins.png" alt="Jenkins" width="900">
 </div>
 
-Once the build is complete, viewing the Allure report becomes available.
-<div style="text-align: left;">
-  <img src="media/screens/jenkins_2.png" alt="Jenkins" width="400">
-</div>
-
-## Test results report in [Allure Report](https://jenkins.autotests.cloud/job/C19-CatherineMoko-final_project/allure/)
+## Test results report in [Allure Report](https://jenkins.autotests.cloud/job/19_neznatnov_final_unsplash_unit24/20/allure/)
 The report of the test execution includes:
 - Test steps
 - Screenshot of the page on the last test step
@@ -114,34 +109,30 @@ The report of the test execution includes:
 - Browser console logs
 - Video of the test run
 <div style="text-align: center;">
-  <img src="media/screens/allure_report_1.png" alt="allure report" width="900">
+  <img src="readme/screenshots/allure1.png" alt="allure report" width="900">
 </div>
 
 <div style="text-align: center;">
-  <img src="media/screens/allure_report_2.png" alt="allure report" width="900">
+  <img src="readme/screenshots/allure2.png" alt="allure report" width="900">
 </div>
 
-## Integration with [Allure TestOps](https://allure.autotests.cloud/project/3544/dashboards)
+## Integration with [Allure TestOps](https://allure.autotests.cloud/project/3603/dashboards)
 <div style="text-align: center;">
-  <img src="media/screens/allure_testops_1.png" alt="allure report" width="900">
+  <img src="readme/screenshots/allureTO1.png" alt="allure report" width="900">
 </div>
 
+## Integration with [Jira](https://jira.autotests.cloud/browse/HOMEWORK-841)
 <div style="text-align: center;">
-  <img src="media/screens/allure_testops_2.png" alt="allure report" width="900">
-</div>
-
-## Integration with [Jira](https://jira.autotests.cloud/browse/HOMEWORK-804)
-<div style="text-align: center;">
-  <img src="media/screens/jira.png" alt="allure report" width="900">
+  <img src="readme/screenshots/jira.png" alt="jira report" width="900">
 </div>
 
 ## Telegram notifications using a bot
 After passing all the tests, an automatic report is sent to the Telegram messenger.
 <div style="text-align: center;">
-  <img src="media/screens/telegram.png" alt="allure report" width="500">
+  <img src="readme/screenshots/telegram.png" alt="telegram report" width="500">
 </div>
 
 ## Example of test execution in Selenoid
 <div style="text-align: center;">
-  <img title="Selenoid Video" src="media/screens/video.gif" alt="Test execution in Selenoid">
+  <img title="Selenoid Video" src="readme/video/video.mp4" alt="Test execution in Selenoid">
 </div>
