@@ -79,7 +79,7 @@ gradle clean TASK
 -DbaseUrl=${BASE_URL}
 -Denv=${env}
 ```
-<code>TASK</code> - ui_test / api_test / test
+<code>TASK</code> - unsplash_ui / unsplash_api / test
 
 ## Running tests in Jenkins
 To run tests in Jenkins, follow these steps:
@@ -89,7 +89,7 @@ To run tests in Jenkins, follow these steps:
 4. Click the **Build** button, and build will be started
 
 <div style="text-align: center;">
-  <img src="media/screens/jenkins.png" alt="Jenkins" width="900">
+  <img src="readme/screenshots/jenkins.png" alt="Jenkins" width="900">
 </div>
 
 ## Test results report in [Allure Report](https://jenkins.autotests.cloud/job/19_neznatnov_final_unsplash_unit24/20/allure/)
