@@ -21,7 +21,7 @@ Unsplash is a platform powered by an amazing community that has gifted hundreds 
 <a href="https://java.com/"><img src="readme/icons/Java.svg" width="50" height="50"  alt="Java"/></a>
 <a href="https://junit.org/junit5/"><img src="readme/icons/JUnit5.svg" width="50" height="50"  alt="JUnit 5"/></a>
 <a href="https://selenide.org/"><img src="readme/icons/Selenide.svg" width="50" height="50"  alt="Selenide"/></a>
-<a href="https://rest-assured.io/"><img src="readme/icons/RestAssured.png" width="50" height="50" alt="RestAssured"/></a>
+<a href="https://rest-assured.io/"><img src="readme/icons/RestAssured.svg" width="50" height="50" alt="RestAssured"/></a>
 <a href="https://gradle.org/"><img src="readme/icons/Gradle.svg" width="50" height="50"  alt="Gradle"/></a>
 <a href="https://github.com/"><img src="readme/icons/GitHub.svg" width="50" height="50"  alt="Github"/></a>
 <a href="https://jenkins.io/"><img src="readme/icons/Jenkins.svg" width="50" height="50"  alt="Jenkins"/></a>
@@ -56,14 +56,14 @@ In this project, the automated tests are written in <code>Java</code> using the 
 To run tests locally on your machine, add the local.properties file to the src/test/resources/config folder and fill in the following properties:
 
 ```properties
-browser = BROWSER
-browserSize = BROWSER_SIZE
-baseUrl = BASE_URL
-trelloUserEmail = TRELLO_USER_EMAIL
-trelloUserPassword = TRELLO_USER_PASSWORD
-apiBaseUrl = API_BASE_URL
-trelloApiKey = TRELLO_API_KEY
-trelloApiToken = TRELLO_API_TOKEN
+clean
+${TASK}
+--info
+-Dbrowser=${BROWSER}
+-DbrowserVersion=${BROWSER_VERSION}
+-DbrowserSize=${BROWSER_SIZE}
+-DbaseUrl=${BASE_URL}
+-Denv=${env}
 ```
 >- <code>BROWSER</code> - browser in which the tests will be run (Chrome is set by default)
 >- <code>BROWSER_SIZE</code> - size of the browser window (1920x1080 is set by default)
@@ -71,8 +71,6 @@ trelloApiToken = TRELLO_API_TOKEN
 >- <code>TRELLO_USER_EMAIL</code> - test account login
 >- <code>TRELLO_USER_PASSWORD</code> - test account password
 >- <code>API_BASE_URL</code> - the base URL of the API
->- <code>TRELLO_API_KEY</code> - API key for Trello test account
->- <code>TRELLO_API_TOKEN</code> - API token for Trello test account
 
 Then use the following command:
 ```
@@ -94,7 +92,7 @@ gradle clean TASK
 ```
 ## Running tests in Jenkins
 To run tests in Jenkins, follow these steps:
-1. Click on the [provided link](https://jenkins.autotests.cloud/job/C19-CatherineMoko-final_project/)
+1. Click on the [provided link](https://jenkins.autotests.cloud/job/19_neznatnov_final_unsplash_unit24/)
 2. Click the **Build with Parameters** link
 3. Modify the parameters as needed
 4. Click the **Build** button, and build will be started

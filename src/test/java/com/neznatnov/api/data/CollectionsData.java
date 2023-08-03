@@ -1,6 +1,7 @@
 package com.neznatnov.api.data;
 
 public class CollectionsData {
-    public String collectionId = "Z_sUzmAPbkA";//"90Cf9k_JhcQ";
+    public static final String COLLECTION_ID = "Z_sUzmAPbkA";
+    public static final String OWNER_ID = "YrYb_a3DRyA";
 
 }

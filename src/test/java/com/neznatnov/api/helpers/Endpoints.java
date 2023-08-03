@@ -2,11 +2,11 @@ package com.neznatnov.api.helpers;
 
 public class Endpoints {
 
-    public static final String getCollectionsId = "/collections/{id}";
-    public static final String getCollectionsPhotos = "/collections/{id}/photos";
-    public static final String getPhotosRandom = "/photos/random";
-    public static final String getPhotoSearch = "/search/photos";
-    public static final String getPhotoStatistics = "/photos/{photoId}/statistics";
-    public static final String getUserLikes = "/users/{username}/likes";
-    public static final String getUserCollections = "/users/{username}/collections";
+    public static final String GET_COLLECTIONS_ID = "/collections/{id}";
+    public static final String GET_COLLECTIONS_PHOTOS = "/collections/{id}/photos";
+    public static final String GET_PHOTOS_RANDOM = "/photos/random";
+    public static final String GET_PHOTO_SEARCH = "/search/photos";
+    public static final String GET_PHOTO_STATISTICS = "/photos/{photoId}/statistics";
+    public static final String GET_USER_LIKES = "/users/{username}/likes";
+    public static final String GET_USER_COLLECTIONS = "/users/{username}/collections";
 }

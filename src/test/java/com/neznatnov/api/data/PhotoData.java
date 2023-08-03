@@ -2,10 +2,10 @@ package com.neznatnov.api.data;
 
 public class PhotoData {
 
-    public String photoIdToSearch = "VWcPlbHglYc";
-    public String photoId = "LF8gK8-HGSg";
-    public String photoKeyWord = "office";
-    public String order = "relevant";
+    //public static final String PHOTO_ID_TO_SEARCH = "VWcPlbHglYc";
+    public static final String PHOTO_ID = "LF8gK8-HGSg";
+    public static final String PHOTO_KEY_WORD = "office";
+    public static final String ORDER = "relevant";
 
 
 }
