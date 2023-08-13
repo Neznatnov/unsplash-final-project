@@ -46,9 +46,7 @@ public class TestBase {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
-        if (Configuration.remote != null) {
-            Attach.addVideo();
-        }
+        Attach.addVideo();
     }
 
     @AfterEach
