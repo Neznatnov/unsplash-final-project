@@ -1,6 +1,8 @@
 package com.neznatnov.web.tests;
 
 import com.neznatnov.web.config.TestBase;
+import com.neznatnov.web.pages.loginPage.LoginPage;
+import com.neznatnov.web.pages.mainPage.MainPage;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -11,6 +13,8 @@ import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
 public class LoginPageTests extends TestBase {
+    private LoginPage loginPage = new LoginPage();
+    private MainPage mainPage = new MainPage();
 
     @Test
     @Tag("unsplash_ui")

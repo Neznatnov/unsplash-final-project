@@ -4,9 +4,6 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.neznatnov.web.helpers.Attach;
-import com.neznatnov.web.pages.loginPage.LoginPage;
-import com.neznatnov.web.pages.mainPage.MainPage;
-import com.neznatnov.web.pages.plusPage.PlusPage;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
@@ -17,14 +14,10 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.Map;
 
 public class TestBase {
-    static UserConfig userConfig = ConfigFactory.create(UserConfig.class, System.getProperties());
-    static WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
-    public LoginPage loginPage = new LoginPage();
-    public MainPage mainPage = new MainPage();
-    public PlusPage plusPage = new PlusPage();
+    private static final UserConfig userConfig = ConfigFactory.create(UserConfig.class, System.getProperties());
+    private static final WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
     protected String email = userConfig.getEmail();
     protected String password = userConfig.getPassword();
-
 
     @BeforeAll
     static void beforeAll() {
@@ -34,7 +27,6 @@ public class TestBase {
         Configuration.browserSize = config.getBrowserSize();
         Configuration.remote = config.getRemoteUrl();
         Configuration.pageLoadStrategy = config.getPageLoadStrategy();
-        //Configuration.browserBinary = "/Applications/Google Chrome.app";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
@@ -42,7 +34,6 @@ public class TestBase {
                 "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
-
     }
 
     @BeforeEach
@@ -55,11 +46,13 @@ public class TestBase {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
-        Attach.addVideo();
+        if (Configuration.remote != null) {
+            Attach.addVideo();
+        }
     }
 
     @AfterEach
-    void closeWindow() {
-        Selenide.closeWindow();
+    void closeWebDriver() {
+        Selenide.closeWebDriver();
     }
 }

@@ -13,5 +13,4 @@ public interface UserConfig extends Config {
 
     @Key("password")
     String getPassword();
-
 }

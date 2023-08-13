@@ -29,5 +29,4 @@ public interface WebDriverConfig extends Config {
 
     @Key("pageLoadStrategy")
     String getPageLoadStrategy();
-
 }
