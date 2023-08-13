@@ -40,3 +40,5 @@ notifications
 /gradlew
 /gradlew.bat
 settings.gradle
+src/test/resources/properties/
+
