@@ -20,7 +20,7 @@
 *.iml
 
 # Project gen files
-.idea
+/.idea
 .allure/
 .gradle/
 allure-results/
