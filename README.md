@@ -33,23 +33,23 @@ Unsplash is a platform powered by an amazing community that has gifted hundreds 
 In this project, the automated tests are written in <code>Java</code> using the <code>Selenide</code> framework. <code>Gradle</code> is used to build the project. <code>JUnit 5</code> is used as the unit testing framework. <code>Rest-assured</code> library was used for API tests. The tests are run from <code>Jenkins</code>. After the run is completed, a notification is sent using a bot on Telegram. <code>Selenoid</code> is used to run browsers in Docker containers. Integration with <code>Allure TestOps</code> and <code>Jira</code> is set up for test reporting and test result analytics.
 
 ## List of UI Tests
-- [x] Checking that all elements are on the page
+- [x] Check that all elements are on the page
 - [x] Log in with correct credentials
 - [x] Log in with incorrect credentials
-- [x] Checking social network links in the menu tab
-- [x] Checking that all elements are in the header
-- [x] Checking the button with the sum of the month
-- [x] Checking the button with the sum of the year
-- [x] Checking the title text on the page
+- [x] Check correct social network links in the menu tab
+- [x] Check that all elements are in the header
+- [x] Check the button with the monthly price
+- [x] Check the title text on the page
+- [x] Check the button with the yearly price
 
 ## List of API tests
-- [x] Checking a selection of photos in a collection
-- [x] Getting a collection by correct id
-- [x] Getting a random photos
-- [x] Searching photos by keyword
-- [x] Verifies retrieving statistics for a specific photo
-- [x] Getting a list of photos that a particular user has liked
-- [x] Getting collections created by a specific user
+- [x] Check a selection of photos in a collection
+- [x] Get a collection by correct id
+- [x] Get a random photos
+- [x] Search photos by keyword
+- [x] Check retrieving statistics for a specific photo
+- [x] Get a list of photos that a particular user has liked
+- [x] Get collections created by a specific user
 
 ## Running automated tests on a local machine
 __Locally, from a terminal:__

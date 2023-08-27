@@ -48,7 +48,7 @@ public class PlusPageTests extends TestBase {
 
     @Test
     @Tag("unsplash_ui")
-    @DisplayName("Checking the button with the yearly price")
+    @DisplayName("Check the button with the yearly price")
     public void correctYearlyGetUnsplashButtonTest() {
         step("Open website Unsplash", () -> open(baseUrl));
 
