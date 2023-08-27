@@ -41,5 +41,5 @@ notifications
 /gradlew.bat
 settings.gradle
 src/test/resources/properties/
-.DS_Store
+src/test/.DS_Store
 

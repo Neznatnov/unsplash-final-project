@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
+
 @Owner("Veronika Iatckaia")
 public class LoginPageTests extends TestBase {
     private LoginPage loginPage = new LoginPage();
