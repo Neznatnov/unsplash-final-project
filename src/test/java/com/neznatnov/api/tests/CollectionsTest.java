@@ -1,5 +1,6 @@
 package com.neznatnov.api.tests;
 
+import com.neznatnov.api.data.BadeDate;
 import com.neznatnov.api.data.CollectionsData;
 import com.neznatnov.api.models.CollectionModule;
 import com.neznatnov.api.models.ImageModule;
@@ -24,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Owner("Veronika Iatckaia")
 public class CollectionsTest {
     private static KeyConfig userConfig = ConfigFactory.create(KeyConfig.class, System.getProperties());
-
+private static BadeDate baseDate = new BadeDate();
     @Test
     @Tag("unsplash_api")
     @DisplayName("Get a collection by correct id")
@@ -54,7 +55,7 @@ public class CollectionsTest {
         step("Checking that in a particular collection we are shown the five photos", () -> {
             List<ImageModule> results = given()
                     .spec(requestSpec)
-                    .header("Authorization", "Client-ID " + userConfig.apiKey())
+                    .header("Authorization", "Client-ID " + baseDate.API_KEY/*userConfig.apiKey()*/)
                     .pathParam("id", CollectionsData.COLLECTION_ID)
                     .param("per_page", 5)
                     .when()
