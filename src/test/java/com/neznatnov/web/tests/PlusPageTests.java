@@ -1,9 +1,9 @@
 package com.neznatnov.web.tests;
 
 import com.neznatnov.web.config.TestBase;
-import com.neznatnov.web.pages.mainPage.MainPage;
-import com.neznatnov.web.pages.plusPage.PlusPage;
-import com.neznatnov.web.testData.TestDataPlusPage;
+import com.neznatnov.web.pages.MainPage;
+import com.neznatnov.web.pages.PlusPage;
+import com.neznatnov.web.data.PlusPageData;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -16,7 +16,7 @@ import static io.qameta.allure.Allure.step;
 public class PlusPageTests extends TestBase {
     private PlusPage plusPage = new PlusPage();
     private MainPage mainPage = new MainPage();
-    private TestDataPlusPage testDataPlusPage = new TestDataPlusPage();
+    private PlusPageData plusPageData = new PlusPageData();
 
     @Test
     @Tag("unsplash_ui")
@@ -28,7 +28,7 @@ public class PlusPageTests extends TestBase {
             mainPage.clickPlusButton();
         });
         step("Verify title text", () -> {
-            plusPage.correctTitle(testDataPlusPage.TITLE);
+            plusPage.correctTitle(plusPageData.TITLE);
         });
     }
 
@@ -42,7 +42,7 @@ public class PlusPageTests extends TestBase {
             mainPage.clickPlusButton();
         });
         step("Verify button text", () -> {
-            plusPage.correctMonthlyGetUnsplashButton(testDataPlusPage.MONTHLY_TEXT);
+            plusPage.correctMonthlyGetUnsplashButton(plusPageData.MONTHLY_TEXT);
         });
     }
 
@@ -56,7 +56,7 @@ public class PlusPageTests extends TestBase {
             mainPage.clickPlusButton();
         });
         step("Verify button text", () -> {
-            plusPage.correctYearlyGetUnsplashButton(testDataPlusPage.YEARLY_TEXT);
+            plusPage.correctYearlyGetUnsplashButton(plusPageData.YEARLY_TEXT);
         });
     }
 }

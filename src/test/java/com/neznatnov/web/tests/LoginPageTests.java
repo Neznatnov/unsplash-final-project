@@ -1,9 +1,9 @@
 package com.neznatnov.web.tests;
 
 import com.neznatnov.web.config.TestBase;
-import com.neznatnov.web.pages.loginPage.LoginPage;
-import com.neznatnov.web.pages.mainPage.MainPage;
-import com.neznatnov.web.testData.TestDataLoginPage;
+import com.neznatnov.web.pages.LoginPage;
+import com.neznatnov.web.pages.MainPage;
+import com.neznatnov.web.data.LoginPageData;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -17,7 +17,7 @@ import static io.qameta.allure.Allure.step;
 public class LoginPageTests extends TestBase {
     private LoginPage loginPage = new LoginPage();
     private MainPage mainPage = new MainPage();
-    private TestDataLoginPage testDataLoginPage = new TestDataLoginPage();
+    private LoginPageData loginPageData = new LoginPageData();
 
     @Test
     @Tag("unsplash_ui")
@@ -43,16 +43,16 @@ public class LoginPageTests extends TestBase {
             mainPage.clickLogInButton();
         });
         step("Set incorrect email", () -> {
-            loginPage.setIncorrectEmail(testDataLoginPage.email);
+            loginPage.setIncorrectEmail(loginPageData.email);
         });
         step("Set incorrect password", () -> {
-            loginPage.setIncorrectPassword(testDataLoginPage.password);
+            loginPage.setIncorrectPassword(loginPageData.password);
         });
         step("Click on the Log In button", () -> {
             loginPage.clickLoginButton();
         });
         step("Verify failed authorization", () -> {
-            loginPage.verifyLoginErrorText(testDataLoginPage.ERROR_LOGIN_TEXT);
+            loginPage.verifyLoginErrorText(loginPageData.ERROR_LOGIN_TEXT);
         });
     }
 

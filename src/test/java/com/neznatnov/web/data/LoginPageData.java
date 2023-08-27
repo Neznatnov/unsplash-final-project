@@ -1,8 +1,8 @@
-package com.neznatnov.web.testData;
+package com.neznatnov.web.data;
 
 import com.github.javafaker.Faker;
 
-public class TestDataLoginPage {
+public class LoginPageData {
     public static final String ERROR_LOGIN_TEXT = "Invalid email or password.";
     private Faker faker = new Faker();
 
