@@ -9,8 +9,8 @@ import org.aeonbits.owner.Config;
 public interface UserConfig extends Config {
 
     @Key("email")
-    String getEmail();
+    String email();
 
     @Key("password")
-    String getPassword();
+    String password();
 }

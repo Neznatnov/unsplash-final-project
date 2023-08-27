@@ -1,11 +1,12 @@
 package com.neznatnov.api.tests;
 
-import com.neznatnov.api.data.BaseData;
 import com.neznatnov.api.data.CollectionsData;
 import com.neznatnov.api.models.CollectionModule;
 import com.neznatnov.api.models.ImageModule;
+import com.neznatnov.api.data.KeyConfig;
 import io.qameta.allure.Owner;
 import io.restassured.http.ContentType;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -20,17 +21,18 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Owner("Veronika Iatckaia")
 public class CollectionsTest {
+    private static KeyConfig userConfig = ConfigFactory.create(KeyConfig.class, System.getProperties());
 
     @Test
     @Tag("unsplash_api")
-    @DisplayName("Getting a collection by correct id")
-    @Owner("Veronika Iatckaia")
+    @DisplayName("Get a collection by correct id")
     public void testGetCollectionById() {
-        step("When adding the correct ID to the endpoint, the collection corresponding to it comes in response", () -> {
+        step("Adding the correct ID to the endpoint, the collection corresponding to it comes in response", () -> {
             CollectionModule result = given()
                     .spec(requestSpec)
-                    .header("Authorization", "Client-ID " + BaseData.API_KEY)
+                    .header("Authorization", "Client-ID " + userConfig.apiKey())
                     .pathParam("id", CollectionsData.COLLECTION_ID)
                     .when()
                     .get(GET_COLLECTIONS_ID)
@@ -47,13 +49,12 @@ public class CollectionsTest {
 
     @Test
     @Tag("unsplash_api")
-    @DisplayName("Checking a selection of photos in a collection")
-    @Owner("Veronika Iatckaia")
+    @DisplayName("Check a selection of photos in a collection")
     public void testGetCollectionPhotos() {
         step("Checking that in a particular collection we are shown the five photos", () -> {
             List<ImageModule> results = given()
                     .spec(requestSpec)
-                    .header("Authorization", "Client-ID " + BaseData.API_KEY)
+                    .header("Authorization", "Client-ID " + userConfig.apiKey())
                     .pathParam("id", CollectionsData.COLLECTION_ID)
                     .param("per_page", 5)
                     .when()
@@ -63,7 +64,7 @@ public class CollectionsTest {
                     .contentType(ContentType.JSON)
                     .extract().body().jsonPath().getList("", ImageModule.class);
             assertThat(results).hasSize(5);
-            step("Checking that the number of photos matches the requested one and belongs to a specific user", () -> {
+            step("Checking that the number of photos is five and belongs to a specific user", () -> {
             String ownerId = results.get(0).getUser().getId();
             assertThat(ownerId).isEqualTo(CollectionsData.OWNER_ID);
             });

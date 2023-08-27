@@ -14,10 +14,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.Map;
 
 public class TestBase {
-    private static final UserConfig userConfig = ConfigFactory.create(UserConfig.class, System.getProperties());
-    private static final WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
-    protected String email = userConfig.getEmail();
-    protected String password = userConfig.getPassword();
+    public static final UserConfig userConfig = ConfigFactory.create(UserConfig.class, System.getProperties());
+    public static final WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
+
 
     @BeforeAll
     static void beforeAll() {

@@ -8,9 +8,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage {
-    TestDataLoginPage testDataLoginPage = new TestDataLoginPage();
-    private final String ERROR_LOGIN_TEXT = "Invalid email or password.";
-
     private final SelenideElement logoPic = $(".login__logo");
     private final SelenideElement loginTitle = $(".login__title");
     private final SelenideElement loginSubTitle = $(".login__subtitle");
@@ -33,14 +30,14 @@ public class LoginPage {
         return this;
     }
 
-    public LoginPage setIncorrectEmail() {
-        emailInput.setValue(testDataLoginPage.email);
+    public LoginPage setIncorrectEmail(String email) {
+        emailInput.setValue(email);
 
         return this;
     }
 
-    public LoginPage setIncorrectPassword() {
-        passwordInput.setValue(testDataLoginPage.password);
+    public LoginPage setIncorrectPassword(String password) {
+        passwordInput.setValue(password);
 
         return this;
     }
@@ -52,8 +49,8 @@ public class LoginPage {
         return this;
     }
 
-    public LoginPage verifyLoginErrorText() {
-        errorBanner.shouldHave(text(ERROR_LOGIN_TEXT));
+    public LoginPage verifyLoginErrorText(String errorLoginText) {
+        errorBanner.shouldHave(text(errorLoginText));
 
         return this;
     }
@@ -65,12 +62,13 @@ public class LoginPage {
 
     public LoginPage setCorrectPassword(String password) {
         passwordInput.setValue(password);
+
         return this;
     }
 
     public LoginPage loginPageCheckSuccessfulLogin() {
         personalAccountPic.shouldBe(visible);
+
         return this;
     }
-
 }

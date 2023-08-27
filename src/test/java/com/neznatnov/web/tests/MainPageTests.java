@@ -1,8 +1,8 @@
 package com.neznatnov.web.tests;
 
 import com.neznatnov.web.config.TestBase;
-import com.neznatnov.web.pages.loginPage.LoginPage;
 import com.neznatnov.web.pages.mainPage.MainPage;
+import com.neznatnov.web.testData.TestDataMainPage;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -11,26 +11,24 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
-
+@Owner("Veronika Iatckaia")
 public class MainPageTests extends TestBase {
     private MainPage mainPage = new MainPage();
+    private TestDataMainPage testDataMainPage = new TestDataMainPage();
     @Test
     @Tag("unsplash_ui")
-    @DisplayName("Checking that all elements are in the header")
-    @Owner("Veronika Iatckaia")
+    @DisplayName("Check that all elements are in the header")
     public void correctHeaderTest() {
         step("Open website Unsplash", () -> open(baseUrl));
 
-        step("Check that all elements are in the header", () -> {
+        step("Check that all elements are visible", () -> {
             mainPage.allElementsExistHeaderMainPage();
         });
-
     }
 
     @Test
     @Tag("unsplash_ui")
-    @DisplayName("Checking social network links in the menu tab")
-    @Owner("Veronika Iatckaia")
+    @DisplayName("Check correct social network links in the menu tab")
     public void correctSocialMediaLinksTest() {
         step("Open website Unsplash", () -> open(baseUrl));
 
@@ -38,16 +36,13 @@ public class MainPageTests extends TestBase {
             mainPage.clickMenuButton();
         });
         step("Check Twitter link", () -> {
-            mainPage.correctTwitterLink();
+            mainPage.correctTwitterLink(testDataMainPage.TWITTER);
         });
         step("Check Facebook link", () -> {
-            mainPage.correctFacebookLink();
+            mainPage.correctFacebookLink(testDataMainPage.FACEBOOK);
         });
         step("Check Instagram link", () -> {
-            mainPage.correctInstagramLink();
+            mainPage.correctInstagramLink(testDataMainPage.INSTAGRAM);
         });
-
     }
-
-
 }

@@ -52,8 +52,11 @@ In this project, the automated tests are written in <code>Java</code> using the 
 - [x] Getting collections created by a specific user
 
 ## Running automated tests on a local machine
-To run tests locally on your machine, add the local.properties file to the src/test/resources/properties folder and fill in the following properties:
-
+__Locally, from a terminal:__
+```
+gradle clean test
+```
+__Remotely, from Jenkins:__
 ```properties
 clean
 ${TASK}
@@ -64,22 +67,12 @@ ${TASK}
 -DbaseUrl=${BASE_URL}
 -Denv=${env}
 ```
+
 >- <code>BROWSER</code> - browser in which the tests will be run (Chrome is set by default)
 >- <code>BROWSER_VERSION</code> - the browser version in which the tests will be run.(The default is 100.00)
 >- <code>BROWSER_SIZE</code> - size of the browser window (1920x1080 is set by default)
 >- <code>BASE_URL</code> - the base URL of the web application under test
 >- <code>env</code> - quick selection of remote test launch configuration.
-
-Or you can specify parameters directly in the command to run:
-```
-gradle clean TASK
--Dbrowser=${BROWSER}
--DbrowserVersion=${BROWSER_VERSION}
--DbrowserSize=${BROWSER_SIZE}
--DbaseUrl=${BASE_URL}
--Denv=${env}
-```
-<code>TASK</code> - unsplash_ui / unsplash_api / test
 
 ## Running tests in Jenkins
 To run tests in Jenkins, follow these steps:

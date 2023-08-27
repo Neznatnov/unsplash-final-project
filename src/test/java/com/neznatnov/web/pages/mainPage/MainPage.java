@@ -7,12 +7,6 @@ import static com.codeborne.selenide.Condition.href;
 import static com.codeborne.selenide.Selenide.$;
 
 public class MainPage {
-
-    private static final String TWITTER = "https://twitter.com/unsplash?utm_source=unsplash&utm_medium=referral";
-    private static final String FACEBOOK = "https://www.facebook.com/pages/Unsplash/274126369394815?utm_source=unsplash&utm_medium=referral";
-    private static final String INSTAGRAM = "https://instagram.com/unsplash?utm_source=unsplash&utm_medium=referral";
-
-
     private final SelenideElement logoPic = $("a.XDKcL.eziW_ svg.UP8CN[width='32'][height='32'][viewBox='0 0 32 32'][version='1.1']");
     private final SelenideElement searchInput = $("input[type='search");
     private final SelenideElement exploreButton = $("a.Ue8P3.KHq0c.BWSMq");
@@ -21,7 +15,7 @@ public class MainPage {
     private final SelenideElement loginButton = $("a.cLLOA.p1cWU.jpBZ0.EzsBC.KHq0c.XHI2L");
     private final SelenideElement submitAPhotoButton = $("button[data-test='SecondaryMenu-Trigger']");
     private final SelenideElement menuButton = $(".QeEH8");
-    private final SelenideElement twitter = $("[title='Follow Unsplash on Twitter']");
+    public final SelenideElement twitter = $("[title='Follow Unsplash on Twitter']");
     private final SelenideElement facebook = $("[title='Follow Unsplash on Facebook']");
     private final SelenideElement instagram = $("[title='Follow Unsplash on Instagram']");
 
@@ -57,20 +51,22 @@ public class MainPage {
         return this;
     }
 
-    public MainPage correctTwitterLink() {
-        twitter.shouldHave(href(TWITTER));
+    public MainPage correctTwitterLink(String link) {
+        twitter.shouldHave(href(link));
+
+
 
         return this;
     }
 
-    public MainPage correctFacebookLink() {
-        facebook.shouldHave(href(FACEBOOK));
+    public MainPage correctFacebookLink(String link) {
+        facebook.shouldHave(href(link));
 
         return this;
     }
 
-    public MainPage correctInstagramLink() {
-        instagram.shouldHave(href(INSTAGRAM));
+    public MainPage correctInstagramLink(String link) {
+        instagram.shouldHave(href(link));
 
         return this;
     }
