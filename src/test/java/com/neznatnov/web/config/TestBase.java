@@ -24,7 +24,7 @@ public class TestBase {
         Configuration.browser = config.getBrowser();
         Configuration.browserVersion = config.getBrowserVersion();
         Configuration.browserSize = config.getBrowserSize();
-        Configuration.remote = config.getRemoteUrl();
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";/*config.getRemoteUrl();*/
         Configuration.pageLoadStrategy = config.getPageLoadStrategy();
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
