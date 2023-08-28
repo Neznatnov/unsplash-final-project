@@ -72,7 +72,7 @@ ${TASK}
 >- <code>BROWSER_VERSION</code> - the browser version in which the tests will be run.(The default is 100.00)
 >- <code>BROWSER_SIZE</code> - size of the browser window (1920x1080 is set by default)
 >- <code>BASE_URL</code> - the base URL of the web application under test
->- <code>env</code> - quick selection of remote test launch configuration.
+>- <code>env</code> - quick remote test launch configuration.
 
 ## Running tests in Jenkins
 To run tests in Jenkins, follow these steps:
@@ -85,7 +85,7 @@ To run tests in Jenkins, follow these steps:
   <img src="readme/screenshots/jenkins.png" alt="Jenkins" width="900">
 </div>
 
-## Test results report in [Allure Report](https://jenkins.autotests.cloud/job/19_neznatnov_final_unsplash_unit24/20/allure/)
+## Test results report in [Allure Report](https://jenkins.autotests.cloud/job/19_neznatnov_final_unsplash_unit24/45/allure/)
 The report of the test execution includes:
 - Test steps
 - Screenshot of the page on the last test step
