@@ -4,7 +4,7 @@ package com.neznatnov.web.config;
 import org.aeonbits.owner.Config;
 
 @Config.Sources({
-        "classpath:properties/web-tests/${env}.properties"
+        "classpath:properties/web-tests/remote.properties"
 })
 public interface WebDriverConfig extends Config {
 
