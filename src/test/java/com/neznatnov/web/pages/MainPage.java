@@ -13,7 +13,7 @@ public class MainPage {
     private final SelenideElement advertiseButton = $("div.cPCmf a.vZKGD.O1X3N.AYTqW.Ue8P3.KHq0c");
     private final SelenideElement plusButton = $("div.cPCmf a[href='/plus']");
     private final SelenideElement loginButton = $("a.cLLOA.p1cWU.jpBZ0.EzsBC.KHq0c.XHI2L");
-    private final SelenideElement submitAPhotoButton = $("button[data-test='SecondaryMenu-Trigger']");
+    private final SelenideElement submitAPhotoButton = $("button.CwMIr.DQBsa.p1cWU.jpBZ0.EzsBC.KHq0c.Olora.I0aPD.dEcXu");
     private final SelenideElement menuButton = $(".QeEH8");
     public final SelenideElement twitter = $("[title='Follow Unsplash on Twitter']");
     private final SelenideElement facebook = $("[title='Follow Unsplash on Facebook']");
