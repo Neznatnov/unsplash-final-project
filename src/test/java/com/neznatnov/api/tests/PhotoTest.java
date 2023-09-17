@@ -24,7 +24,6 @@ import static org.hamcrest.Matchers.equalTo;
 public class PhotoTest {
     private static KeyConfig userConfig = ConfigFactory.create(KeyConfig.class, System.getProperties());
 
-
     @Test
     @Tag("unsplash_api")
     @DisplayName("Get a random photos")

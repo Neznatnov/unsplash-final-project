@@ -25,7 +25,6 @@ import static org.hamcrest.Matchers.*;
 public class UserTest {
     private static KeyConfig userConfig = ConfigFactory.create(KeyConfig.class, System.getProperties());
 
-
     @Test
     @Tag("unsplash_api")
     @DisplayName("Get a list of photos that a particular user has liked")

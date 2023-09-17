@@ -17,7 +17,6 @@ public class TestBase {
     public static final UserConfig userConfig = ConfigFactory.create(UserConfig.class, System.getProperties());
     public static final WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
 
-
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = config.getBaseUrl();

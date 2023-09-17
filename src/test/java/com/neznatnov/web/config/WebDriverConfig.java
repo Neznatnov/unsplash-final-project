@@ -7,7 +7,6 @@ import org.aeonbits.owner.Config;
         "classpath:properties/web-tests/${env}.properties"
 })
 public interface WebDriverConfig extends Config {
-
     @Key("baseUrl")
     @DefaultValue("https://unsplash.com/")
     String getBaseUrl();

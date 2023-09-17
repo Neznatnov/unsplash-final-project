@@ -15,7 +15,7 @@ public class MainPage {
     private final SelenideElement loginButton = $("a.cLLOA.p1cWU.jpBZ0.EzsBC.KHq0c.XHI2L");
     private final SelenideElement submitAPhotoButton = $("button.CwMIr.DQBsa.p1cWU.jpBZ0.EzsBC.KHq0c.Olora.I0aPD.dEcXu");
     private final SelenideElement menuButton = $(".QeEH8");
-    public final SelenideElement twitter = $("[title='Follow Unsplash on Twitter']");
+    private final SelenideElement twitter = $("[title='Follow Unsplash on Twitter']");
     private final SelenideElement facebook = $("[title='Follow Unsplash on Facebook']");
     private final SelenideElement instagram = $("[title='Follow Unsplash on Instagram']");
 
@@ -53,8 +53,6 @@ public class MainPage {
 
     public MainPage correctTwitterLink(String link) {
         twitter.shouldHave(href(link));
-
-
 
         return this;
     }

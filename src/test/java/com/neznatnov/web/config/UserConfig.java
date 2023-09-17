@@ -7,7 +7,6 @@ import org.aeonbits.owner.Config;
         "classpath:properties/web-tests/user.properties"
 })
 public interface UserConfig extends Config {
-
     @Key("email")
     String email();
 
