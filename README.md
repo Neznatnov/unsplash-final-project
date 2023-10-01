@@ -74,6 +74,32 @@ ${TASK}
 >- <code>BASE_URL</code> - the base URL of the web application under test
 >- <code>env</code> - quick remote test launch configuration.
 
+__Property Files__
+
+Possible properties in a `${env}.properties` file, local or remote:
+
+```properties
+baseUrl =
+browser =
+size =
+version =
+remoteUrl =
+pageLoadStrategy =
+```
+
+Possible properties in a `user.properties` file:
+
+```properties
+email=
+password=
+```
+
+Possible properties in a `key.properties` file:
+
+```properties
+apiKey=
+```
+
 ## Running tests in Jenkins
 To run tests in Jenkins, follow these steps:
 1. Click on the [provided link](https://jenkins.autotests.cloud/job/19_neznatnov_final_unsplash_unit24/)
